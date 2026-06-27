@@ -271,7 +271,7 @@
             overflow: hidden;
         }
 
-        /* ===== RESPONSIVE GRID 5-4-4-3-2-2-1 ===== */
+        /* ===== RESPONSIVE GRID ===== */
 
         @media (min-width: 1700px) {
             .materi-grid {
@@ -385,26 +385,61 @@
             position: relative;
         }
 
-        .materi-card:hover {
+        /* Status 1 - Coming Soon (pudar) */
+        .materi-card.status-1 {
+            opacity: 0.6;
+            filter: grayscale(0.3);
+            border-left-color: #4a4a7a;
+        }
+
+        .materi-card.status-1:hover {
+            transform: translateY(-3px) scale(1.01);
+            opacity: 0.7;
+        }
+
+        .materi-card.status-1 .btn-enter {
+            background: #2a2a4a;
+            color: #7a7aaa;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        .materi-card.status-1 .btn-enter:hover {
+            background: #2a2a4a;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .materi-card.status-1 .card-title {
+            color: #7a7aaa;
+        }
+
+        /* Status 2 - Aktif (normal) */
+        .materi-card.status-2:hover {
             transform: translateY(-6px) scale(1.02);
             border-left-color: #b0b0d4;
             box-shadow: 0 15px 35px -8px rgba(42, 42, 74, 0.5);
             background: linear-gradient(135deg, rgba(42, 42, 74, 0.8), rgba(13, 13, 26, 0.75));
         }
 
-        .materi-card:hover .card-icon {
+        .materi-card.status-2:hover .card-icon {
             transform: scale(1.15) rotate(-5deg);
         }
 
-        .materi-card:hover .card-title {
+        .materi-card.status-2:hover .card-title {
             color: #b0b0d4;
         }
 
-        .materi-card:hover .btn-enter {
+        .materi-card.status-2:hover .btn-enter {
             background: #4a4a7a;
             color: #e0e0f0;
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(74, 74, 122, 0.4);
+        }
+
+        /* Status 0 - Sembunyi */
+        .materi-card.status-0 {
+            display: none !important;
         }
 
         .card-icon {
@@ -461,6 +496,14 @@
             text-transform: uppercase;
         }
 
+        .materi-card.status-2 .btn-enter {
+            animation: glowPulse 2.5s infinite ease-in-out;
+        }
+
+        .materi-card.status-2 .btn-enter:hover {
+            animation: none;
+        }
+
         @keyframes glowPulse {
 
             0%,
@@ -473,12 +516,28 @@
             }
         }
 
-        .btn-enter {
-            animation: glowPulse 2.5s infinite ease-in-out;
+        .status-badge {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 0.55rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .materi-card:hover .btn-enter {
-            animation: none;
+        .status-badge.active {
+            background: rgba(74, 122, 74, 0.3);
+            color: #7aaa7a;
+            border: 1px solid rgba(74, 122, 74, 0.3);
+        }
+
+        .status-badge.coming {
+            background: rgba(122, 122, 42, 0.3);
+            color: #aaaa7a;
+            border: 1px solid rgba(122, 122, 42, 0.3);
         }
 
         .no-result {
@@ -578,6 +637,10 @@
 
         .materi-card:nth-child(7) {
             animation-delay: 0.28s;
+        }
+
+        .materi-card:nth-child(8) {
+            animation-delay: 0.32s;
         }
 
         /* ===== SUB MENU INDICATOR ===== */
@@ -741,7 +804,8 @@
             <div class="total-stats-box">
                 <span>📊 <strong>Total Menu:</strong> <span id="totalMateriCount">0</span></span>
                 <span>✅ <strong>Tersedia:</strong> <span id="materiSudahAda">0</span></span>
-                <span>⏳ <strong>Belum Ada:</strong> <span id="materiBelumAda">0</span></span>
+                <span>⏳ <strong>Coming Soon:</strong> <span id="materiComingSoon">0</span></span>
+                <span>⏸️ <strong>Hidden:</strong> <span id="materiHidden">0</span></span>
             </div>
             <div class="search-section">
                 <div class="search-row-flex">
@@ -762,80 +826,11 @@
         </div>
 
         <div class="materi-grid" id="materiContainer">
-
-            <!-- 1. MATERI PELAJARAN -->
-            <a href="0. allmapel.html" class="materi-card gradien-card">
-                <div class="card-number">#1</div>
-                <div class="card-icon">📚</div>
-                <h3 class="card-title">Materi Pelajaran</h3>
-                <div class="card-desc">Kumpulan materi pelajaran sekolah</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 2. BAHASA PEMROGRAMAN -->
-            <a href="44. AllProgramming.html" class="materi-card gradien-card">
-                <div class="card-number">#2</div>
-                <div class="card-icon">💻</div>
-                <h3 class="card-title">Bahasa Pemrograman</h3>
-                <div class="card-desc">Belajar coding & programming</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 3. FRAMEWORK -->
-            <a href="AllFramework.html" class="materi-card gradien-card">
-                <div class="card-number">#3</div>
-                <div class="card-icon">⚙️</div>
-                <h3 class="card-title">Framework</h3>
-                <div class="card-desc">Koleksi framework populer</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 4. TYPE OF LIBRARY -->
-            <a href="AllLibrary.html" class="materi-card gradien-card">
-                <div class="card-number">#4</div>
-                <div class="card-icon">📦</div>
-                <h3 class="card-title">Type of Library</h3>
-                <div class="card-desc">Jenis-jenis library pemrograman</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 5. QUESTION -->
-            <a href="67. quotes.html" class="materi-card gradien-card">
-                <div class="card-number">#5</div>
-                <div class="card-icon">❓</div>
-                <h3 class="card-title">Quotes</h3>
-                <div class="card-desc">Kumpulan kutipan motivasi</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 6. WEB TEMPLATE -->
-            <a href="61. AllWeb.html" class="materi-card gradien-card">
-                <div class="card-number">#6</div>
-                <div class="card-icon">🎨</div>
-                <h3 class="card-title">Web Template</h3>
-                <div class="card-desc">Koleksi template website siap pakai</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
-            <!-- 7. CERITA -->
-            <a href="503. PilihanCerita.html" class="materi-card gradien-card">
-                <div class="card-number">#7</div>
-                <div class="card-icon">📖</div>
-                <h3 class="card-title">Cerita</h3>
-                <div class="card-desc">Kumpulan cerita & hikayat</div>
-                <button class="btn-enter">🚪 Masuk</button>
-            </a>
-
+            <!-- Cards akan di-generate oleh JavaScript -->
         </div>
 
-        <div class="sub-menu-indicator">
-            <span>📚 Materi</span>
-            <span>💻 Coding</span>
-            <span>⚙️ Framework</span>
-            <span>📦 Library</span>
-            <span>❓ Q&A</span>
-            <span>🎨 Template</span>
-            <span>📖 Cerita</span>
+        <div class="sub-menu-indicator" id="subMenuIndicator">
+            <!-- Akan di-generate oleh JavaScript -->
         </div>
 
         <div id="noResultMessage" style="display: none;" class="no-result">
@@ -862,7 +857,8 @@
             <a href="https://wa.me/628386865074" target="_blank" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://www.instagram.com/avenoxagurastore?igsh=MXg5cG92dXp2bmFsZw==" target="_blank" aria-label="Instagram">
+            <a href="https://www.instagram.com/avenoxagurastore?igsh=MXg5cG92dXp2bmFsZw==" target="_blank"
+                aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
@@ -872,9 +868,89 @@
         (function () {
             'use strict';
 
+            // ===== DATA MENU =====
+            // status: 0 = hidden (tidak tampil), 1 = coming soon (pudar), 2 = aktif (normal)
+            const menuData = [
+                {
+                    id: 1,
+                    icon: '📚',
+                    title: 'Materi Pelajaran',
+                    desc: 'Kumpulan materi pelajaran sekolah',
+                    href: '0. allmapel.html',
+                    status: 0 // Aktif
+                },
+                {
+                    id: 2,
+                    icon: '💻',
+                    title: 'Bahasa Pemrograman',
+                    desc: 'Belajar coding & programming',
+                    href: '44. AllProgramming.html',
+                    status: 0 // Aktif
+                },
+                {
+                    id: 3,
+                    icon: '⚙️',
+                    title: 'Framework',
+                    desc: 'Koleksi framework populer',
+                    href: 'AllFramework.html',
+                    status: 0 // Coming Soon
+                },
+                {
+                    id: 4,
+                    icon: '📦',
+                    title: 'Type of Library',
+                    desc: 'Jenis-jenis library pemrograman',
+                    href: 'AllLibrary.html',
+                    status: 0 // Coming Soon
+                },
+                {
+                    id: 5,
+                    icon: '❓',
+                    title: 'Quotes',
+                    desc: 'Kumpulan kutipan motivasi',
+                    href: '67. quotes.html',
+                    status: 1 // Coming Soon
+                },
+                {
+                    id: 6,
+                    icon: '🎨',
+                    title: 'Web Template',
+                    desc: 'Koleksi template website siap pakai',
+                    href: '61. AllWeb.html',
+                    status: 0 // Hidden
+                },
+                {
+                    id: 7,
+                    icon: '📖',
+                    title: 'Cerita',
+                    desc: 'Kumpulan cerita & hikayat',
+                    href: '503. PilihanCerita.html',
+                    status: 0 // Hidden
+                },
+                {
+                    id: 8,
+                    icon: '🖼️',
+                    title: 'All Stiker',
+                    desc: 'Kumpulan stiker & gambar lucu',
+                    href: 'AllStiker.html',
+                    status: 2 // Aktif
+                }
+            ];
+
+            // ===== ELEMEN =====
+            const bodyEl = document.body;
+            const materiContainer = document.getElementById('materiContainer');
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const refreshBtn = document.getElementById('refreshButton');
+            const shortcutNotifSpan = document.getElementById('shortcutNotif');
+            const resultCounterSpan = document.getElementById('resultCounter');
+            const noResultDiv = document.getElementById('noResultMessage');
+            const subMenuIndicator = document.getElementById('subMenuIndicator');
+
+            // ===== COLOR THEMES =====
             const colorThemes = ['theme-primary', 'theme-1', 'theme-2', 'theme-3', 'theme-4'];
             let currentThemeIndex = 0;
-            const bodyEl = document.body;
 
             function applyNextTheme() {
                 if (!bodyEl) return;
@@ -884,11 +960,12 @@
             }
             setInterval(applyNextTheme, 5000);
 
+            // ===== GRADIENT ROTATION =====
             const gradienList = ['gradien-0', 'gradien-1', 'gradien-2'];
             let gradienIndex = 0;
 
             function rotateGradient() {
-                const cards = document.querySelectorAll('.gradien-card, .materi-card');
+                const cards = document.querySelectorAll('.materi-card:not(.status-0)');
                 if (cards.length === 0) return;
                 gradienIndex = (gradienIndex + 1) % gradienList.length;
                 cards.forEach(card => {
@@ -898,70 +975,137 @@
             }
             setInterval(rotateGradient, 3000);
 
-            const searchInput = document.getElementById('searchInput');
-            const materiContainer = document.getElementById('materiContainer');
-            const resultCounterSpan = document.getElementById('resultCounter');
-            const clearBtn = document.getElementById('clearSearchBtn');
-            const shortcutNotifSpan = document.getElementById('shortcutNotif');
-            const refreshBtn = document.getElementById('refreshButton');
-            const noResultDiv = document.getElementById('noResultMessage');
+            // ===== RENDER MENU =====
+            function renderMenu() {
+                const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+                let visibleCount = 0;
+                let activeCount = 0;
+                let comingCount = 0;
+                let hiddenCount = 0;
 
-            function getAllCards() {
-                return Array.from(document.querySelectorAll('.materi-card'));
-            }
+                // Filter menu berdasarkan status
+                const visibleMenus = menuData.filter(item => item.status !== 0);
 
-            function updateStatistik() {
-                const allCards = getAllCards();
-                let sudahAda = 0;
-                let belumAda = 0;
-                allCards.forEach(card => {
-                    const href = card.getAttribute('href');
-                    if (href && href !== '' && href !== '#') {
-                        sudahAda++;
-                    } else {
-                        belumAda++;
-                    }
+                // Hitung statistik
+                menuData.forEach(item => {
+                    if (item.status === 2) activeCount++;
+                    else if (item.status === 1) comingCount++;
+                    else if (item.status === 0) hiddenCount++;
                 });
-                document.getElementById('totalMateriCount').innerText = allCards.length;
-                document.getElementById('materiSudahAda').innerText = sudahAda;
-                document.getElementById('materiBelumAda').innerText = belumAda;
+
+                // Update stats
+                document.getElementById('totalMateriCount').innerText = menuData.length;
+                document.getElementById('materiSudahAda').innerText = activeCount;
+                document.getElementById('materiComingSoon').innerText = comingCount;
+                document.getElementById('materiHidden').innerText = hiddenCount;
+
+                // Build cards
+                let cardsHTML = '';
+                visibleMenus.forEach((item, index) => {
+                    const isMatch = searchTerm === '' ||
+                        item.title.toLowerCase().includes(searchTerm) ||
+                        item.desc.toLowerCase().includes(searchTerm);
+
+                    if (isMatch) visibleCount++;
+
+                    const statusClass = item.status === 1 ? 'status-1' : 'status-2';
+                    const statusBadge = item.status === 1 ?
+                        '<span class="status-badge coming">⏳ Coming Soon</span>' :
+                        '<span class="status-badge active">✅ Aktif</span>';
+                    const buttonText = item.status === 1 ? '⏳ Segera' : '🚪 Masuk';
+                    const cardStyle = isMatch ? '' : 'style="display:none;"';
+
+                    cardsHTML += `
+                        <a href="${item.status === 2 ? item.href : '#'}" 
+                           class="materi-card ${statusClass} gradien-${index % 3}" 
+                           data-id="${item.id}"
+                           data-status="${item.status}"
+                           data-title="${item.title}"
+                           data-desc="${item.desc}"
+                           ${cardStyle}
+                           ${item.status === 1 ? 'onclick="return false;"' : ''}>
+                            <div class="card-number">#${item.id}</div>
+                            ${statusBadge}
+                            <div class="card-icon">${item.icon}</div>
+                            <h3 class="card-title">${item.title}</h3>
+                            <div class="card-desc">${item.desc}</div>
+                            <button class="btn-enter" ${item.status === 1 ? 'disabled' : ''}>${buttonText}</button>
+                        </a>
+                    `;
+                });
+
+                materiContainer.innerHTML = cardsHTML;
+
+                // Update sub menu indicator
+                let subHTML = '';
+                visibleMenus.forEach(item => {
+                    const emoji = item.status === 2 ? '✅' : '⏳';
+                    subHTML += `<span>${emoji} ${item.title}</span>`;
+                });
+                subMenuIndicator.innerHTML = subHTML;
+
+                // Update counter
+                if (resultCounterSpan) {
+                    if (searchTerm !== '' && visibleCount === 0) {
+                        resultCounterSpan.innerHTML = '❌ Menu tidak ditemukan';
+                        resultCounterSpan.style.color = '#b0b0d4';
+                        noResultDiv.style.display = 'block';
+                    } else {
+                        resultCounterSpan.innerHTML = searchTerm !== '' ?
+                            `✨ Ditemukan ${visibleCount} menu` :
+                            `📚 ${visibleCount} menu tersedia`;
+                        resultCounterSpan.style.color = '#e0e0f0';
+                        noResultDiv.style.display = 'none';
+                    }
+                }
+
+                // Event listener untuk card (mencegah klik pada status 1)
+                document.querySelectorAll('.materi-card.status-1').forEach(card => {
+                    card.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        if (shortcutNotifSpan) {
+                            shortcutNotifSpan.innerText = '⏳ Menu ini masih dalam pengembangan!';
+                            setTimeout(() => shortcutNotifSpan.innerText = '', 2000);
+                        }
+                    });
+                });
+
+                return visibleCount;
             }
 
+            // ===== FILTER FUNGSI =====
             function filterMateri() {
                 const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
-                const allCards = getAllCards();
+                const cards = document.querySelectorAll('.materi-card');
                 let visibleCount = 0;
-                allCards.forEach(card => {
-                    const titleH3 = card.querySelector('.card-title');
-                    const desc = card.querySelector('.card-desc');
-                    let title = '';
-                    let descText = '';
-                    if (titleH3) title = titleH3.innerText || '';
-                    if (desc) descText = desc.innerText || '';
-                    title = title.toLowerCase();
-                    descText = descText.toLowerCase();
-                    const isMatch = searchTerm === '' || title.includes(searchTerm) || descText.includes(
-                        searchTerm);
+
+                cards.forEach(card => {
+                    const title = card.dataset.title || '';
+                    const desc = card.dataset.desc || '';
+                    const isMatch = searchTerm === '' ||
+                        title.toLowerCase().includes(searchTerm) ||
+                        desc.toLowerCase().includes(searchTerm);
+
                     card.style.display = isMatch ? '' : 'none';
                     if (isMatch) visibleCount++;
                 });
 
-                if (searchTerm !== '' && visibleCount === 0) {
-                    if (resultCounterSpan) {
+                if (resultCounterSpan) {
+                    if (searchTerm !== '' && visibleCount === 0) {
                         resultCounterSpan.innerHTML = '❌ Menu tidak ditemukan';
                         resultCounterSpan.style.color = '#b0b0d4';
-                    }
-                    noResultDiv.style.display = 'block';
-                } else {
-                    if (resultCounterSpan) {
-                        resultCounterSpan.innerHTML = searchTerm !== '' ? `✨ Ditemukan ${visibleCount} menu` :
+                        noResultDiv.style.display = 'block';
+                    } else {
+                        resultCounterSpan.innerHTML = searchTerm !== '' ?
+                            `✨ Ditemukan ${visibleCount} menu` :
                             `📚 ${visibleCount} menu tersedia`;
                         resultCounterSpan.style.color = '#e0e0f0';
+                        noResultDiv.style.display = 'none';
                     }
-                    noResultDiv.style.display = 'none';
                 }
             }
 
+            // ===== SEARCH EVENTS =====
             let debounceTimer;
             if (searchInput) {
                 searchInput.addEventListener('input', () => {
@@ -982,6 +1126,7 @@
                 });
             }
 
+            // ===== KEYBOARD SHORTCUTS =====
             window.addEventListener('keydown', (e) => {
                 if (!searchInput) return;
                 if ((e.ctrlKey && e.key === 'k') || (e.ctrlKey && e.key === 'K')) {
@@ -1014,10 +1159,11 @@
                 }
             });
 
+            // ===== REFRESH =====
             if (refreshBtn) {
                 refreshBtn.addEventListener('click', () => {
                     if (searchInput) searchInput.value = '';
-                    filterMateri();
+                    renderMenu();
                     const refreshIcon = refreshBtn.querySelector('span');
                     if (refreshIcon) {
                         refreshIcon.style.animation = 'spin 0.5s ease';
@@ -1029,15 +1175,10 @@
                         shortcutNotifSpan.innerText = '⟳ Halaman disegarkan';
                         setTimeout(() => shortcutNotifSpan.innerText = '', 1200);
                     }
-                    getAllCards().forEach(card => {
-                        card.style.transform = 'scale(0.98)';
-                        setTimeout(() => {
-                            card.style.transform = '';
-                        }, 200);
-                    });
                 });
             }
 
+            // ===== SPIN KEYFRAME =====
             if (!document.querySelector('#refreshSpinKeyframe')) {
                 const spinStyle = document.createElement('style');
                 spinStyle.id = 'refreshSpinKeyframe';
@@ -1046,30 +1187,18 @@
                 document.head.appendChild(spinStyle);
             }
 
-            function initGradient() {
-                const cards = document.querySelectorAll('.gradien-card, .materi-card');
-                if (cards.length === 0) return;
-                cards.forEach(card => {
-                    gradienList.forEach(gc => card.classList.remove(gc));
-                    card.classList.add(gradienList[0]);
-                });
-                gradienIndex = 0;
-            }
+            // ===== INIT =====
+            renderMenu();
 
-            setTimeout(() => {
-                initGradient();
-                updateStatistik();
-                filterMateri();
-            }, 100);
+            console.log('✅ Noxa Store | Index - 8 Menu Utama');
+            console.log('📊 Status Menu:');
+            menuData.forEach(item => {
+                const statusText = item.status === 2 ? '✅ Aktif' :
+                    item.status === 1 ? '⏳ Coming Soon' : '⏸️ Hidden';
+                console.log(`   ${item.id}. ${item.title} → ${statusText}`);
+            });
+            console.log('💡 Ubah status di variable menuData (0=hidden, 1=coming soon, 2=aktif)');
 
-            console.log('✅ Noxa Store | Index - 7 Menu Utama');
-            console.log('🎨 1. 📚 Materi Pelajaran → allmapel.html');
-            console.log('🎨 2. 💻 Bahasa Pemrograman → AllProgramming.html');
-            console.log('🎨 3. ⚙️ Framework → framework.html');
-            console.log('🎨 4. 📦 Type of Library → library.html');
-            console.log('🎨 5. ❓ Question → quotes.html');
-            console.log('🎨 6. 🎨 Web Template → web.html');
-            console.log('🎨 7. 📖 Cerita → PilihanCerita.html');
         })();
     </script>
 </body>
